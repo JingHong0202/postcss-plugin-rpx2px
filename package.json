@@ -1,6 +1,6 @@
 {
   "name": "postcss-plugin-rpx2px",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "将自定义CSS单位转成px",
   "main": "dist/index.js",
   "types": "./types",
