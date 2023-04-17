@@ -1,6 +1,7 @@
 import { expect, describe, test } from 'vitest';
 import postcss from 'postcss';
 import rpx2px from '../src/index';
+import path from 'path';
 
 describe('example', () => {
   test('normlize', async () => {
@@ -30,7 +31,7 @@ describe('example', () => {
       (
         await postcss([rpx2px({ whiteFileList: ['example'] })]).process(
           '@media screen and (min-width: 480rpx) {a {font-size: 24rpx};div {width: 1120rpx};#white {width: 333rpx}}',
-          { from: './example/app.css', to: './example/app.css' }
+          { from: path.resolve(__dirname, './example/app.css') }
         )
       ).css
     ).toMatchSnapshot();

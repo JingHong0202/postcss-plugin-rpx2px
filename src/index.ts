@@ -29,7 +29,7 @@ const plugin: PluginCreator<pluginParams> = (
             input = source?.input;
           if (!input?.file) return;
           isWhiteFile = !options.whiteFileList.every(file => {
-            return input.file?.indexOf(file) !== -1;
+            return input.file?.indexOf(file) === -1;
           });
         },
         Declaration(decl) {
