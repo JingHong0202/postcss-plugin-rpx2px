@@ -1,4 +1,4 @@
-import type { PluginCreator, Rule } from 'postcss';
+import type { Rule, PluginCreator } from 'postcss';
 
 type pluginParams = {
   unit?: string;
@@ -11,17 +11,17 @@ type pluginParams = {
 };
 
 const plugin: PluginCreator<pluginParams> = (
-  options = { unit: 'rpx', unitPrecision: 2, designBaseVal: 750 }
+  options: pluginParams = { unit: 'rpx', unitPrecision: 2, designBaseVal: 750 }
 ) => {
   const unitReg = new RegExp(`(\\d+)${options.unit || 'rpx'}`, 'ig');
   const transform = (matchStr: string, num: number) => {
     const base = options.designBaseVal || 750;
-    return `${(750 * (+num / +base)).toFixed(options.unitPrecision || 2)}px`;
+    return `${(100 * (+num / +base)).toFixed(options.unitPrecision || 2)}vw`;
   };
   let isWhiteFile = false;
   return {
-    postcssPlugin: 'postcss-rpx2px',
-    prepare(result) {
+    postcssPlugin: 'postcss-plugin-viewport',
+    prepare() {
       return {
         Once(root) {
           if (!options.whiteFileList?.length) return;
@@ -58,5 +58,5 @@ const plugin: PluginCreator<pluginParams> = (
 };
 
 plugin.postcss = true;
-module.exports = plugin;
-export default plugin;
+// @ts-ignore
+export = plugin;

@@ -16,8 +16,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "removeComments": true,
-    "allowImportingTsExtensions": true
+    "removeComments": true
   },
   "include": ["**/*"],
   "exclude": ["node_modules", "*.config", "dist", "tests"],

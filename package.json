@@ -1,11 +1,13 @@
 {
-  "name": "postcss-plugin-rpx2px",
+  "name": "postcss-plugin-viewport",
   "version": "0.0.1",
   "description": "将自定义CSS单位转成px",
   "main": "dist/index.js",
   "types": "./types",
   "scripts": {
-    "build:type": "tsc",
+    "build": "tsup",
+    "build:type": "tsup --dts-only --outDir=types",
+    "dev": "tsup --watch",
     "lint": "eslint . --fix",
     "test": "vitest run",
     "format": "set NODE_OPTIONS='--experimental-json-modules' && ts-node --esm ./scripts/format.mts",
@@ -29,7 +31,8 @@
   },
   "dependencies": {
     "chalk": "4.1.2",
-    "postcss": "^8.4.22"
+    "postcss": "^8.4.22",
+    "tsup": "^6.7.0"
   },
   "files": [
     "dist",
