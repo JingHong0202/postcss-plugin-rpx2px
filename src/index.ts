@@ -6,6 +6,7 @@ type pluginParams = {
   whiteSelector?: string[];
   whiteFileList?: string[];
   designBaseVal?: number;
+  rootVal?: number;
   unitPrecision?: number;
   mediaQuery?: boolean;
 };
@@ -15,8 +16,10 @@ const plugin: PluginCreator<pluginParams> = (
 ) => {
   const unitReg = new RegExp(`(\\d+)${options.unit || 'rpx'}`, 'ig');
   const transform = (matchStr: string, num: number) => {
-    const base = options.designBaseVal || 750;
-    return `${(100 * (+num / +base)).toFixed(options.unitPrecision || 2)}vw`;
+    const base = options.rootVal || options.designBaseVal || 750;
+    return options.rootVal !== undefined
+      ? `${+num / +base}rem`
+      : `${(100 * (+num / +base)).toFixed(options.unitPrecision || 2)}vw`;
   };
   let isWhiteFile = false;
   return {

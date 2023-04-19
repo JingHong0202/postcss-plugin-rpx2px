@@ -1,6 +1,6 @@
 import { expect, describe, test } from 'vitest';
 import postcss from 'postcss';
-import postcssVieowport from '../dist/index';
+import postcssVieowport from '../src/index';
 import path from 'path';
 
 describe('example', () => {
@@ -14,6 +14,17 @@ describe('example', () => {
           })
         ]).process(
           'a {font-size: 24rpx};div {width: 1120rpx};#white {width: 333rpx}'
+        )
+      ).css
+    ).toMatchSnapshot();
+  });
+
+  test('normlize rem', async () => {
+    expect(
+      (
+        await postcss([postcssVieowport({ rootVal: 50 })]).process(
+          '@media screen and (min-width: 480rpx) {a {font-size: 24rpx};div {width: 1120rpx};#white {width: 333rpx}}',
+          { from: path.resolve(__dirname, './example/app.css') }
         )
       ).css
     ).toMatchSnapshot();

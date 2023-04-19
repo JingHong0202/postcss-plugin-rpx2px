@@ -1,15 +1,22 @@
-# package-development-template
+# postcss-plugin-viewport
 
-> 专用用于开发 npm 包开发的模板，一步到位，省去安装各种依赖的时间
+> 用于将自定义 css 单位转换为自适应单位 如：（vw、rem）的一个 postcss 插件
 
-## dependencies
+### params
 
-language: typeScript  
-code format: prettier  
-code lint: eslint  
-test: vitest  
-git hook: husky、lint-staged
+```typescript
+type pluginParams = {
+  unit?: string;
+  whiteAttrList?: string[];
+  whiteSelector?: string[];
+  whiteFileList?: string[];
+  designBaseVal?: number;
+  unitPrecision?: number;
+  mediaQuery?: boolean;
+  rootVal?: number;
+};
+```
 
-## scripts
+### notice
 
-format: code format cli
+> 传 rootVal，自动采用 rem，没有则默认使用 vw

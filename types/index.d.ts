@@ -8,6 +8,7 @@ type pluginParams = {
   designBaseVal?: number;
   unitPrecision?: number;
   mediaQuery?: boolean;
+  rootVal?: number;
 };
 declare const plugin: (options: pluginParams) => PluginCreator<pluginParams>;
 
